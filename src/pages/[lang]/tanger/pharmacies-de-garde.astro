@@ -1,6 +1,7 @@
 ---
 import { readFeed, latestRelevant, localNow } from '../../../lib/feed.js';
 import '../../../styles/global.css';
+import '../../../styles/pharmacy-cards.css';
 
 export function getStaticPaths() {
   return [{ params: { lang: 'fr' } }, { params: { lang: 'ar' } }];
@@ -29,17 +30,17 @@ const t = isArabic ? {
   checked: 'آخر تحقق من المصدر', source: 'افتح صفحة المصدر', day: 'حراسة النهار', night: 'حراسة الليل', other: 'لائحة الحراسة',
   time: 'التوقيت', note: 'تأكد من التاريخ والتوقيت، واتصل بالصيدلية قبل التوجه إليها.',
   empty: 'لا توجد لائحة مؤكدة متاحة الآن.', emptyDetail: 'راجع صفحة المصدر للحصول على أحدث لائحة.',
-  image: 'افتح الصورة بحجم أكبر', about: 'كيف نعرض هذه اللوائح', aboutText: 'ننقل صور اللوائح والتوقيت من صفحة صيدليات الحراسة بطنجة. التحقق الآلي لا يؤكد أن الصيدلية مفتوحة فعلاً؛ اتصل بها قبل التنقل. إذا تعذر جلب منشور جديد، نعرض تاريخ آخر تحقق بوضوح.',
+  image: 'صورة الإعلان الأصلية', about: 'كيف نعرض هذه اللوائح', aboutText: 'نقرأ أسماء الصيدليات من صور الصفحة بتقنية OCR، ونطابقها مع دليل عناوين راجعناه. رابط الخريطة يبحث بالاسم والعنوان، ولا يؤكد موقعاً دقيقاً. اتصل بالصيدلية قبل التنقل.',
   latestWarning: 'هذه اللائحة ليست مؤكدة للحراسة الجارية. تحقق من المصدر قبل التنقل.',
-  language: 'Français', archive: 'بطاقات الصيدليات المنشورة',
+  language: 'Français', archive: 'الصيدليات المدرجة', matched: 'عنوان بمصدر', pending: 'العنوان غير مؤكد', unknown: 'الاسم غير واضح', pendingAddress: 'راجع الصورة الأصلية للتأكد من العنوان.', map: 'ابحث في الخرائط', call: 'اتصل', addressSource: 'مصدر العنوان', mapNote: 'تحقق من النتيجة على الخريطة قبل الذهاب.',
 } : {
   subtitle: 'Le planning, directement depuis la source locale', current: 'Garde en cours', latest: 'Dernier planning publié',
   checked: 'Dernière vérification de la source', source: 'Voir la page source', day: 'Garde de jour', night: 'Garde de nuit', other: 'Planning de garde',
   time: 'Horaires', note: 'Vérifiez la date et les horaires, puis appelez la pharmacie avant de vous déplacer.',
   empty: 'Aucun planning confirmé disponible pour le moment.', emptyDetail: 'Consultez la page source pour le planning le plus récent.',
-  image: 'Agrandir la carte', about: 'Comment ce site utilise les plannings', aboutText: 'Nous reprenons les cartes et les horaires de la page Pharmacies de garde à Tanger. La vérification automatique ne confirme pas qu’une pharmacie est effectivement ouverte : appelez avant de partir. Si un nouveau post est inaccessible, la date de la dernière vérification reste visible.',
+  image: 'Image de l’annonce originale', about: 'Comment ce site utilise les plannings', aboutText: 'Nous lisons les noms sur les images de la page avec l’OCR et les rapprochons d’un répertoire d’adresses sourcées. Le lien Maps lance une recherche par nom et adresse, sans garantir un emplacement exact. Appelez avant de partir.',
   latestWarning: 'Ce planning n’est pas confirmé pour la garde en cours. Vérifiez la source avant de partir.',
-  language: 'العربية', archive: 'Cartes des pharmacies publiées',
+  language: 'العربية', archive: 'Pharmacies annoncées', matched: 'Adresse sourcée', pending: 'Adresse à vérifier', unknown: 'Nom illisible', pendingAddress: 'Consultez l’image originale pour vérifier l’adresse.', map: 'Chercher sur Maps', call: 'Appeler', addressSource: 'Source de l’adresse', mapNote: 'Vérifiez le résultat sur la carte avant de partir.',
 };
 const shiftName = (shift) => t[shift] || t.other;
 const formatPostDate = (date) => new Intl.DateTimeFormat(locale, { timeZone: 'UTC', weekday: 'long', day: 'numeric', month: 'long' }).format(new Date(`${date}T12:00:00Z`));
@@ -88,10 +89,15 @@ const formatPostDate = (date) => new Intl.DateTimeFormat(locale, { timeZone: 'UT
               <div class="shift-heading"><div><span class="shift-icon" aria-hidden="true">{post.shift === 'night' ? '◐' : '✳'}</span><h3>{shiftName(post.shift)}</h3></div><time datetime={post.date}>{formatPostDate(post.date)}</time></div>
               {post.interval && <p class="hours"><span>{t.time}</span><strong dir="ltr">{post.interval.start} – {post.interval.end}</strong></p>}
               <p class="important">{t.note}</p>
-              <h4>{t.archive} <span>({post.images.length})</span></h4>
-              <div class="cards">
-                {post.images.map((image, index) => <a class="card" href={withBase(image)} target="_blank" rel="noopener noreferrer" aria-label={`${t.image} ${index + 1}`}><img src={withBase(image)} alt={`${shiftName(post.shift)} : ${formatPostDate(post.date)}, ${index + 1}`} loading={index > 1 ? 'lazy' : 'eager'} decoding="async" /><span>{t.image}<span aria-hidden="true">↗</span></span></a>)}
-              </div>
+              <h4>{t.archive} <span>({post.pharmacies?.length || 0})</span></h4>
+              {post.pharmacies?.length ? <div class="pharmacy-grid">
+                {post.pharmacies.map(pharmacy => <article class="pharmacy-card">
+                  <header class="pharmacy-card-head"><span class="pharmacy-symbol" aria-hidden="true">✚</span><div><h5>{pharmacy.name || t.unknown}</h5><span class:list={['match-status', pharmacy.status === 'matched' ? 'is-matched' : 'is-pending']}>{pharmacy.status === 'matched' ? t.matched : t.pending}</span></div></header>
+                  <div class="pharmacy-card-body">{pharmacy.address ? <p class="pharmacy-address" dir="auto">{pharmacy.address}</p> : <p class="pharmacy-address pending-address">{t.pendingAddress}</p>}{pharmacy.addressSource && <a class="address-source" href={pharmacy.addressSource} target="_blank" rel="noopener noreferrer">{t.addressSource} ↗</a>}</div>
+                  <footer class="pharmacy-card-footer">{pharmacy.mapUrl && <a class="map-action" href={pharmacy.mapUrl} target="_blank" rel="noopener noreferrer">{t.map} ↗</a>}{pharmacy.phone && <a class="call-action" href={`tel:${pharmacy.phone.replace(/[^+\d]/g, '')}`}>{t.call} <span dir="ltr">{pharmacy.phone}</span></a>}<a class="original-action" href={withBase(pharmacy.sourceImage)} target="_blank" rel="noopener noreferrer">{t.image} ↗</a></footer>
+                </article>)}
+              </div> : <p>{t.pendingAddress}</p>}
+              <p class="map-note">{t.mapNote}</p>
             </article>)}
           </div>
         </>}

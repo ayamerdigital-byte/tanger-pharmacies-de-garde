@@ -1,0 +1,75 @@
+[
+  {
+    "name": "Arimas",
+    "address": "Tanja Balia, quartier El Haskouri, lotissement Arimas, Tanger",
+    "phone": "+212708873019",
+    "source": "https://www.telecontact.ma/pharmacie-de-garde-zone/tanger/tanger.html"
+  },
+  {
+    "name": "Belkacem",
+    "address": "Jirari 2, avenue B Bis, Beni Makada, Tanger",
+    "phone": "+212539958371",
+    "source": "https://www.telecontact.ma/pharmacie-de-garde-zone/tanger/tanger.html"
+  },
+  {
+    "name": "Camelia",
+    "address": "8 avenue Moulay Rachid, Val Fleuri, Tanger",
+    "phone": "+212539373137",
+    "source": "https://www.marocmedecin.com/pharmacie/pharmacie-camelia-5019-14005019"
+  },
+  {
+    "name": "Fleming",
+    "address": "Mesnana, complexe Al Worod, devant le grand stade, Tanger",
+    "phone": "+212539380892",
+    "source": "https://pharmacy.ma/pharmacie/pharmacie-fleming-tanger"
+  },
+  {
+    "name": "Akalai",
+    "address": "Route Tanja Balia, quartier Oued Sania, lotissement Sania, Tanger",
+    "phone": null,
+    "source": "https://pharmacy.ma/pharmacie/pharmacie-akalai-tanger"
+  },
+  {
+    "name": "6 Novembre",
+    "address": "30 résidence Marjane, route de Rabat, Tanger",
+    "phone": "+212539312007",
+    "source": "https://medicalis.ma/fiche/PHARMACIE-6-NOVEMBRE/30622"
+  },
+  {
+    "name": "Assafwa",
+    "address": "Nouvelle route Rahrah, Abdalass, Tanger",
+    "phone": "+212539312918",
+    "source": "https://pharmacy.ma/pharmacie/pharmacie-assafwa-tanger"
+  },
+  {
+    "name": "Satfilage",
+    "address": "Avenue Moulay Rachid, rue face à la prison de Tanger",
+    "phone": "+212539315460",
+    "source": "https://www.satfilage.com/contact/"
+  },
+  {
+    "name": "Ben Ayad",
+    "aliases": ["Benayad"],
+    "address": "Mrah Tanja Balia, près du palais des fêtes Moutamid Ibn Abbad, Tanger",
+    "phone": "+212539342635",
+    "source": "https://www.lejournaldetanger.com/wp-content/uploads/PDF22/LejournaldeTanger02Avril2022.pdf"
+  },
+  {
+    "name": "Sania",
+    "address": "Boulevard Aicha Moussafir, Sania, Beni Makada, Tanger",
+    "phone": "+212539361330",
+    "source": "https://www.telecontact.ma/annonceur/pharmacie-sania/3047220/tanger.php"
+  },
+  {
+    "name": "De Tanger",
+    "address": "Route de Tétouan, complexe Amal 3, Tanger",
+    "phone": "+212539954808",
+    "source": "https://sahha.ma/pharmacien/tanger/pharmacie-de-tanger-tanger"
+  },
+  {
+    "name": "La Plage",
+    "address": "7 avenue Youssef Ibn Tachfine, Tanger",
+    "phone": "+212539940974",
+    "source": "https://www.gardepharma.ma/pharmacie/1014"
+  }
+]

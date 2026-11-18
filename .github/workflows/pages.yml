@@ -24,10 +24,20 @@ jobs:
       DEPLOY_TARGET: github-pages
     steps:
       - uses: actions/checkout@v7
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
       - name: Fetch latest Facebook roster
         run: npm run sync:pages
       - name: Build and upload Astro site
-        uses: withastro/action@v6
+        run: npm run build:pages
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
 
   deploy:
     needs: build

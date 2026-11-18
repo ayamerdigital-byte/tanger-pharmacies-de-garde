@@ -2,6 +2,7 @@ import { mkdir, readFile, rename, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseTimeline, PLUGIN_URL, SOURCE_PAGE } from './facebook-parser.mjs';
+import { enrichLatestPosts } from './ocr-pharmacies.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const githubPages = process.env.DEPLOY_TARGET === 'github-pages';
@@ -34,6 +35,11 @@ for (const post of posts) {
 
 const usable = posts.filter(post => post.images.length > 0);
 if (!usable.length) throw new Error('No roster images could be downloaded; keeping the previous feed');
+const directory = JSON.parse(await readFile(path.join(root, 'data', 'pharmacy-directory.json'), 'utf8'));
+await enrichLatestPosts(usable, imageDir, directory);
+if (!usable.some(post => post.pharmacies?.some(pharmacy => pharmacy.name))) {
+  throw new Error('OCR found no pharmacy names; keeping the previous feed');
+}
 
 let prior = null;
 try { prior = JSON.parse(await readFile(output, 'utf8')); } catch {}

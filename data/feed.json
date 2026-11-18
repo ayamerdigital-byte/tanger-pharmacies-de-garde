@@ -1,7 +1,7 @@
 {
   "source": "https://web.facebook.com/pharmacies.degarde.tanger",
-  "lastCheckedAt": "2026-11-18T20:11:39.754Z",
-  "lastChangedAt": "2026-11-18T19:32:03.588Z",
+  "lastCheckedAt": "2026-11-18T20:31:05.072Z",
+  "lastChangedAt": "2026-11-18T20:31:05.072Z",
   "posts": [
     {
       "id": "1794996014",
@@ -18,6 +18,52 @@
         "/rosters/1794996014-2.jpg",
         "/rosters/1794996014-3.jpg",
         "/rosters/1794996014-4.jpg"
+      ],
+      "pharmacies": [
+        {
+          "id": "1794996014-1-1",
+          "name": "Arimas",
+          "address": "Tanja Balia, quartier El Haskouri, lotissement Arimas, Tanger",
+          "phone": "+212708873019",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Pharmacie%20Arimas%2C%20Tanja%20Balia%2C%20quartier%20El%20Haskouri%2C%20lotissement%20Arimas%2C%20Tanger%2C%20Maroc",
+          "addressSource": "https://www.telecontact.ma/pharmacie-de-garde-zone/tanger/tanger.html",
+          "status": "matched",
+          "sourceImage": "/rosters/1794996014-1.jpg",
+          "ocrConfidence": 72
+        },
+        {
+          "id": "1794996014-2-1",
+          "name": "Belkacem",
+          "address": "Jirari 2, avenue B Bis, Beni Makada, Tanger",
+          "phone": "+212539958371",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Pharmacie%20Belkacem%2C%20Jirari%202%2C%20avenue%20B%20Bis%2C%20Beni%20Makada%2C%20Tanger%2C%20Maroc",
+          "addressSource": "https://www.telecontact.ma/pharmacie-de-garde-zone/tanger/tanger.html",
+          "status": "matched",
+          "sourceImage": "/rosters/1794996014-2.jpg",
+          "ocrConfidence": 66
+        },
+        {
+          "id": "1794996014-3-1",
+          "name": "Camelia",
+          "address": "8 avenue Moulay Rachid, Val Fleuri, Tanger",
+          "phone": "+212539373137",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Pharmacie%20Camelia%2C%208%20avenue%20Moulay%20Rachid%2C%20Val%20Fleuri%2C%20Tanger%2C%20Maroc",
+          "addressSource": "https://www.marocmedecin.com/pharmacie/pharmacie-camelia-5019-14005019",
+          "status": "matched",
+          "sourceImage": "/rosters/1794996014-3.jpg",
+          "ocrConfidence": 76
+        },
+        {
+          "id": "1794996014-4-1",
+          "name": "Fleming",
+          "address": "Mesnana, complexe Al Worod, devant le grand stade, Tanger",
+          "phone": "+212539380892",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Pharmacie%20Fleming%2C%20Mesnana%2C%20complexe%20Al%20Worod%2C%20devant%20le%20grand%20stade%2C%20Tanger%2C%20Maroc",
+          "addressSource": "https://pharmacy.ma/pharmacie/pharmacie-fleming-tanger",
+          "status": "matched",
+          "sourceImage": "/rosters/1794996014-4.jpg",
+          "ocrConfidence": 74
+        }
       ]
     },
     {
@@ -35,6 +81,96 @@
         "/rosters/1794988852-2.jpg",
         "/rosters/1794988852-3.jpg",
         "/rosters/1794988852-4.jpg"
+      ],
+      "pharmacies": [
+        {
+          "id": "1794988852-1-1",
+          "name": "Akalai",
+          "address": "Route Tanja Balia, quartier Oued Sania, lotissement Sania, Tanger",
+          "phone": null,
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Pharmacie%20Akalai%2C%20Route%20Tanja%20Balia%2C%20quartier%20Oued%20Sania%2C%20lotissement%20Sania%2C%20Tanger%2C%20Maroc",
+          "addressSource": "https://pharmacy.ma/pharmacie/pharmacie-akalai-tanger",
+          "status": "matched",
+          "sourceImage": "/rosters/1794988852-1.jpg",
+          "ocrConfidence": 55
+        },
+        {
+          "id": "1794988852-1-2",
+          "name": "6 Novembre",
+          "address": "30 résidence Marjane, route de Rabat, Tanger",
+          "phone": "+212539312007",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Pharmacie%206%20Novembre%2C%2030%20r%C3%A9sidence%20Marjane%2C%20route%20de%20Rabat%2C%20Tanger%2C%20Maroc",
+          "addressSource": "https://medicalis.ma/fiche/PHARMACIE-6-NOVEMBRE/30622",
+          "status": "matched",
+          "sourceImage": "/rosters/1794988852-1.jpg",
+          "ocrConfidence": 52
+        },
+        {
+          "id": "1794988852-2-1",
+          "name": "Assafwa",
+          "address": "Nouvelle route Rahrah, Abdalass, Tanger",
+          "phone": "+212539312918",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Pharmacie%20Assafwa%2C%20Nouvelle%20route%20Rahrah%2C%20Abdalass%2C%20Tanger%2C%20Maroc",
+          "addressSource": "https://pharmacy.ma/pharmacie/pharmacie-assafwa-tanger",
+          "status": "matched",
+          "sourceImage": "/rosters/1794988852-2.jpg",
+          "ocrConfidence": 46
+        },
+        {
+          "id": "1794988852-2-2",
+          "name": "Satfilage",
+          "address": "Avenue Moulay Rachid, rue face à la prison de Tanger",
+          "phone": "+212539315460",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Pharmacie%20Satfilage%2C%20Avenue%20Moulay%20Rachid%2C%20rue%20face%20%C3%A0%20la%20prison%20de%20Tanger%2C%20Maroc",
+          "addressSource": "https://www.satfilage.com/contact/",
+          "status": "matched",
+          "sourceImage": "/rosters/1794988852-2.jpg",
+          "ocrConfidence": 42
+        },
+        {
+          "id": "1794988852-3-1",
+          "name": "Ben Ayad",
+          "address": "Mrah Tanja Balia, près du palais des fêtes Moutamid Ibn Abbad, Tanger",
+          "phone": "+212539342635",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Pharmacie%20Ben%20Ayad%2C%20Mrah%20Tanja%20Balia%2C%20pr%C3%A8s%20du%20palais%20des%20f%C3%AAtes%20Moutamid%20Ibn%20Abbad%2C%20Tanger%2C%20Maroc",
+          "addressSource": "https://www.lejournaldetanger.com/wp-content/uploads/PDF22/LejournaldeTanger02Avril2022.pdf",
+          "status": "matched",
+          "sourceImage": "/rosters/1794988852-3.jpg",
+          "ocrConfidence": 36
+        },
+        {
+          "id": "1794988852-3-2",
+          "name": "Sania",
+          "address": "Boulevard Aicha Moussafir, Sania, Beni Makada, Tanger",
+          "phone": "+212539361330",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Pharmacie%20Sania%2C%20Boulevard%20Aicha%20Moussafir%2C%20Sania%2C%20Beni%20Makada%2C%20Tanger%2C%20Maroc",
+          "addressSource": "https://www.telecontact.ma/annonceur/pharmacie-sania/3047220/tanger.php",
+          "status": "matched",
+          "sourceImage": "/rosters/1794988852-3.jpg",
+          "ocrConfidence": 58
+        },
+        {
+          "id": "1794988852-4-1",
+          "name": "De Tanger",
+          "address": "Route de Tétouan, complexe Amal 3, Tanger",
+          "phone": "+212539954808",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Pharmacie%20De%20Tanger%2C%20Route%20de%20T%C3%A9touan%2C%20complexe%20Amal%203%2C%20Tanger%2C%20Maroc",
+          "addressSource": "https://sahha.ma/pharmacien/tanger/pharmacie-de-tanger-tanger",
+          "status": "matched",
+          "sourceImage": "/rosters/1794988852-4.jpg",
+          "ocrConfidence": 60
+        },
+        {
+          "id": "1794988852-4-2",
+          "name": "La Plage",
+          "address": "7 avenue Youssef Ibn Tachfine, Tanger",
+          "phone": "+212539940974",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Pharmacie%20La%20Plage%2C%207%20avenue%20Youssef%20Ibn%20Tachfine%2C%20Tanger%2C%20Maroc",
+          "addressSource": "https://www.gardepharma.ma/pharmacie/1014",
+          "status": "matched",
+          "sourceImage": "/rosters/1794988852-4.jpg",
+          "ocrConfidence": 45
+        }
       ]
     },
     {
@@ -49,6 +185,52 @@
         "/rosters/1794938891-2.jpg",
         "/rosters/1794938891-3.jpg",
         "/rosters/1794938891-4.jpg"
+      ],
+      "pharmacies": [
+        {
+          "id": "1794938891-1-1",
+          "name": "AL BARAKA",
+          "address": null,
+          "phone": null,
+          "mapUrl": null,
+          "addressSource": null,
+          "status": "pending",
+          "sourceImage": "/rosters/1794938891-1.jpg",
+          "ocrConfidence": 74
+        },
+        {
+          "id": "1794938891-2-1",
+          "name": "AL MASJID",
+          "address": null,
+          "phone": null,
+          "mapUrl": null,
+          "addressSource": null,
+          "status": "pending",
+          "sourceImage": "/rosters/1794938891-2.jpg",
+          "ocrConfidence": 70
+        },
+        {
+          "id": "1794938891-3-1",
+          "name": "BNI TOUZINE",
+          "address": null,
+          "phone": null,
+          "mapUrl": null,
+          "addressSource": null,
+          "status": "pending",
+          "sourceImage": "/rosters/1794938891-3.jpg",
+          "ocrConfidence": 69
+        },
+        {
+          "id": "1794938891-4-1",
+          "name": "RIF",
+          "address": null,
+          "phone": null,
+          "mapUrl": null,
+          "addressSource": null,
+          "status": "pending",
+          "sourceImage": "/rosters/1794938891-4.jpg",
+          "ocrConfidence": 67
+        }
       ]
     },
     {

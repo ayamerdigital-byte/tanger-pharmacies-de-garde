@@ -1,6 +1,6 @@
 # Tanger pharmacies de garde MVP
 
-Mobile-first Astro site for the Tangier duty-pharmacy roster. It reads the public [Facebook Page Plugin timeline](https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fweb.facebook.com%2Fpharmacies.degarde.tanger&tabs=timeline&width=500&height=800), saves dated posts and their pharmacy-card images, and shows French and Arabic roster pages.
+Mobile-first Astro site for the Tangier duty-pharmacy roster. It reads the public [Facebook Page Plugin timeline](https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fweb.facebook.com%2Fpharmacies.degarde.tanger&tabs=timeline&width=500&height=800), uses OCR to read pharmacy names from posted images, and shows our own French and Arabic text cards. Addresses and phone numbers come from a reviewed directory in `data/pharmacy-directory.json`; each card links to its address source and to a Google Maps search for that pharmacy and address.
 
 ## Temporary GitHub Pages hosting
 
@@ -43,7 +43,9 @@ The disk stores new rosters across deploys. The web app serves roster images fro
 ## Data policy and current limits
 
 - The importer uses a public Facebook plugin response. This endpoint can change or stop returning posts. A failed sync leaves the last successful feed intact and logs an error.
-- Each card remains an image from the source. The MVP does not infer names, addresses, phones, coordinates, or opening status from OCR. Users should enlarge cards and call before visiting.
+- Tesseract OCR extracts names from the latest two dates of source images. Exact normalized names match the reviewed directory. Unknown or low-confidence names have no address, phone, or Maps link until reviewed; their original image remains linked for checking.
+- Maps buttons open a name-and-address search, not a verified GPS pin. Address source links make each match reviewable. Keep directory entries current by checking their linked sources and the original Facebook image; remove incorrect entries rather than guessing.
+- The source images are retained only as linked evidence. The visible pharmacy cards and layout are our own.
 - Only posts with a parseable date and attached images are stored. A current duty label requires explicit day/night text and two times in the post. Other posts can appear as the latest planning, never as confirmed current.
 - The Page Plugin exposes the page URL but does not provide an individual post permalink in this response, so source links point to the Facebook page.
 - Images and post text belong to the source page. For a public launch, arrange permission or an official feed with the page owner.
