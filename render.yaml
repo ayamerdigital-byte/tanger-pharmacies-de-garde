@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: tanger-pharmacies-de-garde
+    runtime: node
+    plan: 0.5c-512mb
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /fr/tanger/pharmacies-de-garde/
+    disk:
+      name: roster-storage
+      mountPath: /opt/render/project/src/storage
+      sizeGB: 1
+    envVars:
+      - key: STORAGE_DIR
+        value: /opt/render/project/src/storage

@@ -1,0 +1,21 @@
+{
+  "name": "tanger-pharmacies-de-garde",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22.12.0 <25" },
+  "scripts": {
+    "start": "node scripts/start.mjs",
+    "serve": "node dist/server/entry.mjs",
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "sync": "node scripts/sync-facebook.mjs",
+    "sync:pages": "DEPLOY_TARGET=github-pages node scripts/sync-facebook.mjs",
+    "build:pages": "DEPLOY_TARGET=github-pages astro build",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@astrojs/node": "^11.1.14",
+    "astro": "^7.4.13"
+  }
+}
