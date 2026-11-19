@@ -82,7 +82,7 @@ const formatPostDate = (date) => new Intl.DateTimeFormat(locale, { timeZone: 'UT
         <div class="today"><span class="pulse" aria-hidden="true"></span><time id="today-date" datetime={now.date}>{dateLabel}</time>{!isStatic && <span class="today-time">{now.time}</span>}</div>
       </section>
 
-      <section class="roster" aria-labelledby="roster-title" data-latest-date={latestDate} data-next-date={nextDate} data-overnight-end={overnightEnd} data-latest-warning={t.latestWarning} data-stale-warning={t.staleWarning}>
+      <section class="roster" aria-labelledby="roster-title" data-latest-date={latestDate} data-next-date={nextDate} data-overnight-end={overnightEnd} data-last-changed-at={feed.lastChangedAt} data-latest-warning={t.latestWarning} data-stale-warning={t.staleWarning}>
         <div class="roster-head">
           <div><h2 id="roster-title">{selection.active ? t.current : t.latest}</h2><p class="source-time">{t.checked} : <strong>{checkedLabel || '—'}</strong></p></div>
           <a class="source-link" href={feed.source} target="_blank" rel="noopener noreferrer">{t.source}<span aria-hidden="true">↗</span></a>
@@ -125,6 +125,17 @@ const formatPostDate = (date) => new Intl.DateTimeFormat(locale, { timeZone: 'UT
       };
       refreshDate();
       setInterval(refreshDate, 60_000);
+      setInterval(async () => {
+        try {
+          const url = new URL(location.href);
+          url.searchParams.set('check', String(Date.now()));
+          const response = await fetch(url, { cache: 'no-store' });
+          if (!response.ok) return;
+          const updated = new DOMParser().parseFromString(await response.text(), 'text/html').querySelector('.roster')?.dataset.lastChangedAt;
+          const current = document.querySelector('.roster')?.dataset.lastChangedAt;
+          if (updated && current && updated !== current) location.replace(url);
+        } catch { /* Keep the current page when offline. */ }
+      }, 15 * 60_000);
     </script>}
   </body>
 </html>

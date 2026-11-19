@@ -15,6 +15,7 @@ npm run build:pages
 
 Static Pages show the latest dated day and night cards and their published hours. They do **not** label a roster as currently open, because the exact local time changes between builds. The Node version below retains the live current-shift view.
 The page shows the current Casablanca date in the browser. When the newest imported roster predates today, it labels that roster as old and points visitors to the Facebook source; a successful sync cannot invent a roster the source has not published.
+An open browser tab checks the published page every 15 minutes and reloads if the roster changes.
 
 ## Run locally
 
