@@ -1,5 +1,5 @@
 ---
-import { readFeed, latestRelevant, localNow } from '../../../lib/feed.js';
+import { readFeed, latestRelevant, localNow, isActive } from '../../../lib/feed.js';
 import '../../../styles/global.css';
 import '../../../styles/pharmacy-cards.css';
 
@@ -15,8 +15,11 @@ const now = localNow();
 const isStatic = process.env.DEPLOY_TARGET === 'github-pages';
 const latestDate = feed.posts.map(post => post.date).sort().at(-1);
 const selection = isStatic ? { posts: feed.posts.filter(post => post.date === latestDate), active: false } : latestRelevant(feed.posts, now);
+const staleNow = latestDate < now.date && !selection.posts.some(post => isActive(post, now));
+const nextDate = latestDate && new Date(new Date(`${latestDate}T12:00:00Z`).getTime() + 86_400_000).toISOString().slice(0, 10);
+const overnightEnd = selection.posts.filter(post => post.interval?.end <= post.interval?.start).map(post => post.interval.end).sort().at(-1);
 const locale = isArabic ? 'ar-MA' : 'fr-MA';
-const dateLabel = new Intl.DateTimeFormat(locale, { timeZone: isStatic ? 'UTC' : 'Africa/Casablanca', weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(isStatic && latestDate ? new Date(`${latestDate}T12:00:00Z`) : new Date());
+const dateLabel = new Intl.DateTimeFormat(locale, { timeZone: 'Africa/Casablanca', weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(new Date());
 const checkedLabel = feed.lastCheckedAt ? new Intl.DateTimeFormat(locale, { timeZone: 'Africa/Casablanca', dateStyle: 'medium', timeStyle: 'short' }).format(new Date(feed.lastCheckedAt)) : null;
 const title = isArabic ? (isStatic ? 'صيدليات الحراسة بطنجة' : 'صيدليات الحراسة بطنجة اليوم') : (isStatic ? 'Pharmacies de garde à Tanger' : 'Pharmacies de garde à Tanger aujourd’hui');
 const description = isArabic ? 'اطلع على لائحة صيدليات الحراسة بطنجة، التوقيت، وتاريخ آخر تحقق من المصدر.' : 'Consultez les pharmacies de garde à Tanger, les horaires et la date de la dernière vérification de la source.';
@@ -32,6 +35,7 @@ const t = isArabic ? {
   empty: 'لا توجد لائحة مؤكدة متاحة الآن.', emptyDetail: 'راجع صفحة المصدر للحصول على أحدث لائحة.',
   image: 'صورة الإعلان الأصلية', about: 'كيف نعرض هذه اللوائح', aboutText: 'نقرأ أسماء الصيدليات من صور الصفحة بتقنية OCR، ونطابقها مع دليل عناوين راجعناه. رابط الخريطة يبحث بالاسم والعنوان، ولا يؤكد موقعاً دقيقاً. اتصل بالصيدلية قبل التنقل.',
   latestWarning: 'هذه اللائحة ليست مؤكدة للحراسة الجارية. تحقق من المصدر قبل التنقل.',
+  staleWarning: 'لا توجد في هذا الموقع لائحة متاحة بتاريخ اليوم. آخر لائحة أدناه قديمة؛ تحقق من صفحة المصدر قبل التنقل.',
   language: 'Français', archive: 'الصيدليات المدرجة', matched: 'عنوان بمصدر', pending: 'العنوان غير مؤكد', unknown: 'الاسم غير واضح', pendingAddress: 'راجع الصورة الأصلية للتأكد من العنوان.', map: 'ابحث في الخرائط', call: 'اتصل', addressSource: 'مصدر العنوان', mapNote: 'تحقق من النتيجة على الخريطة قبل الذهاب.',
 } : {
   subtitle: 'Le planning, directement depuis la source locale', current: 'Garde en cours', latest: 'Dernier planning publié',
@@ -40,6 +44,7 @@ const t = isArabic ? {
   empty: 'Aucun planning confirmé disponible pour le moment.', emptyDetail: 'Consultez la page source pour le planning le plus récent.',
   image: 'Image de l’annonce originale', about: 'Comment ce site utilise les plannings', aboutText: 'Nous lisons les noms sur les images de la page avec l’OCR et les rapprochons d’un répertoire d’adresses sourcées. Le lien Maps lance une recherche par nom et adresse, sans garantir un emplacement exact. Appelez avant de partir.',
   latestWarning: 'Ce planning n’est pas confirmé pour la garde en cours. Vérifiez la source avant de partir.',
+  staleWarning: 'Aucun planning daté d’aujourd’hui n’est disponible sur ce site. Le dernier planning ci-dessous est ancien ; vérifiez la page source avant de partir.',
   language: 'العربية', archive: 'Pharmacies annoncées', matched: 'Adresse sourcée', pending: 'Adresse à vérifier', unknown: 'Nom illisible', pendingAddress: 'Consultez l’image originale pour vérifier l’adresse.', map: 'Chercher sur Maps', call: 'Appeler', addressSource: 'Source de l’adresse', mapNote: 'Vérifiez le résultat sur la carte avant de partir.',
 };
 const shiftName = (shift) => t[shift] || t.other;
@@ -74,16 +79,16 @@ const formatPostDate = (date) => new Intl.DateTimeFormat(locale, { timeZone: 'UT
         <p class="city">Tanger · طنجة</p>
         <h1 id="page-title">{title}</h1>
         <p class="subtitle">{t.subtitle}</p>
-        <div class="today"><span class="pulse" aria-hidden="true"></span><time datetime={isStatic ? latestDate || now.date : now.date}>{dateLabel}</time>{!isStatic && <span class="today-time">{now.time}</span>}</div>
+        <div class="today"><span class="pulse" aria-hidden="true"></span><time id="today-date" datetime={now.date}>{dateLabel}</time>{!isStatic && <span class="today-time">{now.time}</span>}</div>
       </section>
 
-      <section class="roster" aria-labelledby="roster-title">
+      <section class="roster" aria-labelledby="roster-title" data-latest-date={latestDate} data-next-date={nextDate} data-overnight-end={overnightEnd} data-latest-warning={t.latestWarning} data-stale-warning={t.staleWarning}>
         <div class="roster-head">
           <div><h2 id="roster-title">{selection.active ? t.current : t.latest}</h2><p class="source-time">{t.checked} : <strong>{checkedLabel || '—'}</strong></p></div>
           <a class="source-link" href={feed.source} target="_blank" rel="noopener noreferrer">{t.source}<span aria-hidden="true">↗</span></a>
         </div>
         {selection.posts.length === 0 ? <div class="empty"><p>{t.empty}</p><p>{t.emptyDetail}</p></div> : <>
-          {!selection.active && <p class="warning" role="status">{t.latestWarning}</p>}
+          {!selection.active && <p class="warning" id="roster-warning" role="status">{staleNow ? t.staleWarning : t.latestWarning}</p>}
           <div class="shift-list">
             {selection.posts.map(post => <article class="shift">
               <div class="shift-heading"><div><span class="shift-icon" aria-hidden="true">{post.shift === 'night' ? '◐' : '✳'}</span><h3>{shiftName(post.shift)}</h3></div><time datetime={post.date}>{formatPostDate(post.date)}</time></div>
@@ -105,5 +110,21 @@ const formatPostDate = (date) => new Intl.DateTimeFormat(locale, { timeZone: 'UT
       <section class="about" aria-labelledby="about-title"><h2 id="about-title">{t.about}</h2><p>{t.aboutText}</p><a href={feed.source} target="_blank" rel="noopener noreferrer">{t.source}</a></section>
     </main>
     <footer class="footer"><div class="wrap">Tanger · طنجة <span>{new Date().getFullYear()}</span></div></footer>
+    {isStatic && <script is:inline>
+      const refreshDate = () => {
+        const parts = Object.fromEntries(new Intl.DateTimeFormat('en-GB', { timeZone: 'Africa/Casablanca', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(new Date()).map(part => [part.type, part.value]));
+        const today = `${parts.year}-${parts.month}-${parts.day}`;
+        const label = document.getElementById('today-date');
+        const roster = document.querySelector('.roster');
+        const warning = document.getElementById('roster-warning');
+        const locale = document.documentElement.lang === 'ar' ? 'ar-MA' : 'fr-MA';
+        label.dateTime = today;
+        label.textContent = new Intl.DateTimeFormat(locale, { timeZone: 'Africa/Casablanca', weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(new Date());
+        const overnightActive = roster.dataset.nextDate === today && `${parts.hour}:${parts.minute}` < roster.dataset.overnightEnd;
+        if (warning) warning.textContent = roster.dataset.latestDate < today && !overnightActive ? roster.dataset.staleWarning : roster.dataset.latestWarning;
+      };
+      refreshDate();
+      setInterval(refreshDate, 60_000);
+    </script>}
   </body>
 </html>

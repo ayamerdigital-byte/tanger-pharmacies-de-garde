@@ -4,7 +4,7 @@ Mobile-first Astro site for the Tangier duty-pharmacy roster. It reads the publi
 
 ## Temporary GitHub Pages hosting
 
-The public site is deployed at `https://ayamerdigital-byte.github.io/tanger-pharmacies-de-garde/`. `.github/workflows/pages.yml` fetches the latest source posts and rebuilds static pages on pushes, manual runs, and at **00:00, 06:00, 12:00, and 18:00 Africa/Casablanca**. A failed fetch stops that deployment, leaving the last published site available. GitHub may delay scheduled workflows, so this is a development host rather than a guaranteed live duty service.
+The public site is deployed at `https://ayamerdigital-byte.github.io/tanger-pharmacies-de-garde/`. `.github/workflows/pages.yml` fetches the latest source posts and rebuilds static pages on pushes, manual runs, and at **00:17, 06:17, 12:17, and 18:17 Africa/Casablanca**, with an extra **09:17** morning check. A failed fetch stops that deployment, leaving the last published site available. GitHub may delay scheduled workflows, so this is a development host rather than a guaranteed live duty service.
 
 Run the Pages build locally with:
 
@@ -14,6 +14,7 @@ npm run build:pages
 ```
 
 Static Pages show the latest dated day and night cards and their published hours. They do **not** label a roster as currently open, because the exact local time changes between builds. The Node version below retains the live current-shift view.
+The page shows the current Casablanca date in the browser. When the newest imported roster predates today, it labels that roster as old and points visitors to the Facebook source; a successful sync cannot invent a roster the source has not published.
 
 ## Run locally
 
