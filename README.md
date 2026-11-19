@@ -53,6 +53,12 @@ The disk stores new rosters across deploys. The web app serves roster images fro
 - Images and post text belong to the source page. For a public launch, arrange permission or an official feed with the page owner.
 - No analytics, geolocation, user accounts, or cookies are required for this MVP.
 
+## Search visibility and trust pages
+
+The French and Arabic site includes [About](https://ayamerdigital-byte.github.io/tanger-pharmacies-de-garde/fr/about/), [Privacy](https://ayamerdigital-byte.github.io/tanger-pharmacies-de-garde/fr/privacy/), and [Terms](https://ayamerdigital-byte.github.io/tanger-pharmacies-de-garde/fr/terms/) pages. They identify the maintainer, explain the Facebook/OCR/address workflow, describe the actual data flows, and provide a correction contact. All six language versions are linked in the footer and listed in [sitemap.xml](https://ayamerdigital-byte.github.io/tanger-pharmacies-de-garde/sitemap.xml); `robots.txt` allows crawling.
+
+For Google Search Console, verify ownership of the GitHub Pages property and submit the sitemap URL above. A sitemap helps discovery but does not guarantee indexing or ranking. Google says its AI search features use the same core SEO requirements and do not require a special AI text file or markup.
+
 ## Verification
 
 ```sh

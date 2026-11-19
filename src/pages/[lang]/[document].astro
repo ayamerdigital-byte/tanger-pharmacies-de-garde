@@ -1,0 +1,71 @@
+---
+import { documents, documentKeys } from '../../lib/site-documents.js';
+import SiteFooter from '../../components/SiteFooter.astro';
+import '../../styles/global.css';
+import '../../styles/site-documents.css';
+
+export function getStaticPaths() {
+  return ['fr', 'ar'].flatMap(lang => documentKeys.map(document => ({ params: { lang, document } })));
+}
+
+const lang = Astro.params.lang;
+const key = Astro.params.document;
+const doc = documents[lang]?.[key];
+if (!doc) return new Response('Not found', { status: 404 });
+const isArabic = lang === 'ar';
+const site = import.meta.env.SITE || 'http://localhost:4321';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const withBase = (path) => `${base}/${path.replace(/^\//, '')}`;
+const canonical = new URL(withBase(`/${lang}/${key}/`), site).href;
+const alternate = withBase(`/${isArabic ? 'fr' : 'ar'}/${key}/`);
+const home = withBase(`/${lang}/tanger/pharmacies-de-garde/`);
+const labels = isArabic
+  ? { brand: 'صيدليات الحراسة بطنجة', language: 'Français', back: 'العودة إلى لائحة الصيدليات', updated: 'آخر تحديث', skip: 'انتقل إلى المحتوى' }
+  : { brand: 'Pharmacies de garde à Tanger', language: 'العربية', back: 'Retour aux pharmacies de garde', updated: 'Mise à jour', skip: 'Aller au contenu' };
+const updated = new Intl.DateTimeFormat(isArabic ? 'ar-MA' : 'fr-MA', { timeZone: 'UTC', dateStyle: 'long' }).format(new Date('2026-11-19T12:00:00Z'));
+---
+<!doctype html>
+<html lang={lang} dir={isArabic ? 'rtl' : 'ltr'}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b5267" />
+    <meta name="description" content={doc.description} />
+    <title>{doc.title} | {labels.brand}</title>
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="fr-MA" href={new URL(withBase(`/fr/${key}/`), site).href} />
+    <link rel="alternate" hreflang="ar-MA" href={new URL(withBase(`/ar/${key}/`), site).href} />
+    <link rel="alternate" hreflang="x-default" href={new URL(withBase(`/fr/${key}/`), site).href} />
+    <meta property="og:title" content={doc.title} />
+    <meta property="og:description" content={doc.description} />
+    <meta property="og:type" content="website" />
+  </head>
+  <body>
+    <a class="skip" href="#main">{labels.skip}</a>
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a class="brand" href={home} aria-label={labels.brand}><span class="cross" aria-hidden="true"></span><span>Tanger<span class="brand-small">{isArabic ? 'صيدليات الحراسة' : 'Pharmacies de garde'}</span></span></a>
+        <a class="language" href={alternate} lang={isArabic ? 'fr' : 'ar'}>{labels.language}</a>
+      </div>
+    </header>
+    <main id="main" class="wrap document-main">
+      <header class="document-intro">
+        <p class="city">Tanger · طنجة</p>
+        <h1>{doc.title}</h1>
+        <p class="document-lead">{doc.lead}</p>
+        <p class="document-updated">{labels.updated} : <time datetime="2026-11-19">{updated}</time></p>
+      </header>
+      <div class="document-body">
+        {doc.sections.map(section => <section>
+          <h2>{section.title}</h2>
+          {section.paragraphs.map(paragraph => <p>{paragraph}</p>)}
+          {section.links && <ul class="document-links">
+            {section.links.map(link => <li><a href={link.href} target={link.href.startsWith('https:') ? '_blank' : undefined} rel={link.href.startsWith('https:') ? 'noopener noreferrer' : undefined}>{link.label} {link.href.startsWith('https:') && <span aria-hidden="true">↗</span>}</a></li>)}
+          </ul>}
+        </section>)}
+      </div>
+      <a class="document-back" href={home}>{isArabic ? '→' : '←'} {labels.back}</a>
+    </main>
+    <SiteFooter lang={lang} />
+  </body>
+</html>
