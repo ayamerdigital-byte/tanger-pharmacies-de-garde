@@ -19,7 +19,7 @@ const latestDate = feed.posts.map(post => post.date).sort().at(-1);
 const selection = isStatic ? { posts: feed.posts.filter(post => post.date === latestDate), active: false } : latestRelevant(feed.posts, now);
 const staleNow = latestDate < now.date && !selection.posts.some(post => isActive(post, now));
 const nextDate = latestDate && new Date(new Date(`${latestDate}T12:00:00Z`).getTime() + 86_400_000).toISOString().slice(0, 10);
-const overnightEnd = selection.posts.filter(post => post.interval?.end <= post.interval?.start).map(post => post.interval.end).sort().at(-1);
+const overnightEnd = selection.posts.flatMap(post => post.intervals?.length ? post.intervals : post.interval ? [post.interval] : []).filter(interval => interval.end <= interval.start).map(interval => interval.end).sort().at(-1);
 const locale = isArabic ? 'ar-MA' : 'fr-MA';
 const dateLabel = new Intl.DateTimeFormat(locale, { timeZone: 'Africa/Casablanca', weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(new Date());
 const checkedLabel = feed.lastCheckedAt ? new Intl.DateTimeFormat(locale, { timeZone: 'Africa/Casablanca', dateStyle: 'medium', timeStyle: 'short' }).format(new Date(feed.lastCheckedAt)) : null;
@@ -32,22 +32,24 @@ const path = `/${lang}/tanger/pharmacies-de-garde/`;
 const alternate = `/${isArabic ? 'fr' : 'ar'}/tanger/pharmacies-de-garde/`;
 const t = isArabic ? {
   subtitle: 'لائحة الحراسة من المصدر المحلي', current: 'الحراسة الجارية', latest: 'آخر لائحة منشورة',
-  checked: 'آخر تحقق من المصدر', source: 'افتح صفحة المصدر', day: 'حراسة النهار', night: 'حراسة الليل', other: 'لائحة الحراسة',
+  checked: 'آخر تحقق من المصدر', source: 'افتح صفحة المصدر', day: 'حراسة النهار', night: 'حراسة الليل', combined: 'حراسة النهار والليل', other: 'لائحة الحراسة',
   time: 'التوقيت', note: 'تأكد من التاريخ والتوقيت، واتصل بالصيدلية قبل التوجه إليها.',
   empty: 'لا توجد لائحة مؤكدة متاحة الآن.', emptyDetail: 'راجع صفحة المصدر للحصول على أحدث لائحة.',
   image: 'صورة الإعلان الأصلية', about: 'كيف نعرض هذه اللوائح', aboutText: 'نقرأ أسماء الصيدليات من صور الصفحة بتقنية OCR، ونطابقها مع دليل عناوين راجعناه. رابط الخريطة يبحث بالاسم والعنوان، ولا يؤكد موقعاً دقيقاً. اتصل بالصيدلية قبل التنقل.',
   latestWarning: 'هذه اللائحة ليست مؤكدة للحراسة الجارية. تحقق من المصدر قبل التنقل.',
   staleWarning: 'لا توجد في هذا الموقع لائحة متاحة بتاريخ اليوم. آخر لائحة أدناه قديمة؛ تحقق من صفحة المصدر قبل التنقل.',
+  partialWarning: (available, total) => `هذا المنشور يحتوي على ${total} صور، لكن فيسبوك أتاح لنا ${available} فقط. اللائحة أدناه غير مكتملة.`, originalPost: 'افتح المنشور الأصلي للاطلاع على اللائحة الكاملة',
   noticeHeading: 'توضيح من صفحة المصدر', noticeSource: 'الصفحة الأصلية على فيسبوك',
   language: 'Français', archive: 'الصيدليات المدرجة', matched: 'عنوان بمصدر', pending: 'العنوان غير مؤكد', unknown: 'الاسم غير واضح', pendingAddress: 'راجع الصورة الأصلية للتأكد من العنوان.', map: 'ابحث في الخرائط', call: 'اتصل', addressSource: 'مصدر العنوان', mapNote: 'تحقق من النتيجة على الخريطة قبل الذهاب.',
 } : {
   subtitle: 'Le planning, directement depuis la source locale', current: 'Garde en cours', latest: 'Dernier planning publié',
-  checked: 'Dernière vérification de la source', source: 'Voir la page source', day: 'Garde de jour', night: 'Garde de nuit', other: 'Planning de garde',
+  checked: 'Dernière vérification de la source', source: 'Voir la page source', day: 'Garde de jour', night: 'Garde de nuit', combined: 'Garde de jour et de nuit', other: 'Planning de garde',
   time: 'Horaires', note: 'Vérifiez la date et les horaires, puis appelez la pharmacie avant de vous déplacer.',
   empty: 'Aucun planning confirmé disponible pour le moment.', emptyDetail: 'Consultez la page source pour le planning le plus récent.',
   image: 'Image de l’annonce originale', about: 'Comment ce site utilise les plannings', aboutText: 'Nous lisons les noms sur les images de la page avec l’OCR et les rapprochons d’un répertoire d’adresses sourcées. Le lien Maps lance une recherche par nom et adresse, sans garantir un emplacement exact. Appelez avant de partir.',
   latestWarning: 'Ce planning n’est pas confirmé pour la garde en cours. Vérifiez la source avant de partir.',
   staleWarning: 'Aucun planning daté d’aujourd’hui n’est disponible sur ce site. Le dernier planning ci-dessous est ancien ; vérifiez la page source avant de partir.',
+  partialWarning: (available, total) => `Cette publication contient ${total} photos, mais Facebook ne nous en montre que ${available}. La liste ci-dessous est incomplète.`, originalPost: 'Voir la publication originale et la liste complète',
   noticeHeading: 'Clarification de la page source', noticeSource: 'Page Facebook d’origine',
   language: 'العربية', archive: 'Pharmacies annoncées', matched: 'Adresse sourcée', pending: 'Adresse à vérifier', unknown: 'Nom illisible', pendingAddress: 'Consultez l’image originale pour vérifier l’adresse.', map: 'Chercher sur Maps', call: 'Appeler', addressSource: 'Source de l’adresse', mapNote: 'Vérifiez le résultat sur la carte avant de partir.',
 };
@@ -118,6 +120,8 @@ const noticeOrder = isArabic ? [notices.ar, notices.fr] : [notices.fr, notices.a
             {selection.posts.map(post => <article class="shift">
               <div class="shift-heading"><div><span class="shift-icon" aria-hidden="true">{post.shift === 'night' ? '◐' : '✳'}</span><h3>{shiftName(post.shift)}</h3></div><time datetime={post.date}>{formatPostDate(post.date)}</time></div>
               {post.interval && <p class="hours"><span>{t.time}</span><strong dir="ltr">{post.interval.start} – {post.interval.end}</strong></p>}
+              {post.intervals?.map(interval => <p class="hours"><span>{t.time}</span><strong dir="ltr">{interval.start} – {interval.end}</strong></p>)}
+              {post.expectedImageCount > post.images?.length && <p class="warning partial-warning">{t.partialWarning(post.images.length, post.expectedImageCount)} <a href={post.sourceUrl || feed.source} target="_blank" rel="noopener noreferrer">{t.originalPost} ↗</a></p>}
               <p class="important">{t.note}</p>
               <h4>{t.archive} <span>({post.pharmacies?.length || 0})</span></h4>
               {post.pharmacies?.length ? <div class="pharmacy-grid">

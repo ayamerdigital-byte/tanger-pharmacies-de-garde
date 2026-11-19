@@ -4,7 +4,7 @@ Mobile-first Astro site for the Tangier duty-pharmacy roster. It reads the publi
 
 ## Temporary GitHub Pages hosting
 
-The public site is deployed at `https://ayamerdigital-byte.github.io/tanger-pharmacies-de-garde/`. `.github/workflows/pages.yml` fetches the latest source posts and rebuilds static pages on pushes, manual runs, and at **00:17, 06:17, 12:17, and 18:17 Africa/Casablanca**, with an extra **09:17** morning check. A failed fetch stops that deployment, leaving the last published site available. GitHub may delay scheduled workflows, so this is a development host rather than a guaranteed live duty service.
+The public site is deployed at `https://ayamerdigital-byte.github.io/tanger-pharmacies-de-garde/`. `.github/workflows/pages.yml` fetches the latest source posts and rebuilds static pages on pushes, manual runs, and every two hours at minute 23 in Africa/Casablanca. A failed fetch stops that deployment, leaving the last published site available. GitHub may delay or drop scheduled workflows, so this is a development host rather than a guaranteed live duty service.
 
 Run the Pages build locally with:
 
@@ -49,7 +49,7 @@ The disk stores new rosters across deploys. The web app serves roster images fro
 - Maps buttons open a name-and-address search, not a verified GPS pin. Address source links make each match reviewable. Keep directory entries current by checking their linked sources and the original Facebook image; remove incorrect entries rather than guessing.
 - The source images are retained only as linked evidence. The visible pharmacy cards and layout are our own.
 - Only posts with a parseable date and attached images are stored. A current duty label requires explicit day/night text and two times in the post. Other posts can appear as the latest planning, never as confirmed current.
-- The Page Plugin exposes the page URL but does not provide an individual post permalink in this response, so source links point to the Facebook page.
+- The Page Plugin may expose fewer photos than a post's album contains. The site compares the public image count with the advertised album count, marks partial listings, and links visitors to the original post when its permalink is known in `data/post-links.json`. Otherwise it links to the source page. It does not present a partial album as a complete roster.
 - Images and post text belong to the source page. For a public launch, arrange permission or an official feed with the page owner.
 - No analytics, geolocation, user accounts, or cookies are required for this MVP.
 

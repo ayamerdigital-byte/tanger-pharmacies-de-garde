@@ -14,6 +14,8 @@ const response = await fetch(PLUGIN_URL, { headers: { 'user-agent': 'Mozilla/5.0
 if (!response.ok) throw new Error(`Facebook returned HTTP ${response.status}`);
 const posts = parseTimeline(await response.text());
 if (posts.length === 0) throw new Error('No dated roster posts found; keeping the previous feed');
+const postLinks = JSON.parse(await readFile(path.join(root, 'data', 'post-links.json'), 'utf8'));
+for (const post of posts) if (postLinks[post.id]) post.sourceUrl = postLinks[post.id];
 
 await mkdir(path.dirname(output), { recursive: true });
 await mkdir(imageDir, { recursive: true });

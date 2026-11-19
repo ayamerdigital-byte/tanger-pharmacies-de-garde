@@ -8,9 +8,14 @@ export function normalizeName(value) {
 }
 
 export function extractName(text) {
-  const line = text.split(/\r?\n/).find(value => /\bPharmacie\s+[A-Z0-9]/i.test(value));
-  const match = line?.match(/\bPharmacie\s+([A-Z0-9À-ÿ][A-Z0-9À-ÿ '-]*)/i);
-  return match?.[1]?.trim().replace(/\s{2,}.*/, '') || null;
+  const lines = text.split(/\r?\n/).map(value => value.trim()).filter(Boolean);
+  for (let i = 0; i < lines.length; i++) {
+    if (!/\bPharmacie\b/i.test(lines[i])) continue;
+    const sameLine = lines[i].match(/\bPharmacie\s+([A-Z0-9À-ÿ][A-Z0-9À-ÿ '-]*)/i);
+    if (sameLine) return sameLine[1].trim().replace(/\s{2,}.*/, '');
+    if (/^[A-Z0-9À-ÿ][A-Z0-9À-ÿ '-]+$/i.test(lines[i + 1] || '')) return lines[i + 1];
+  }
+  return null;
 }
 
 export function matchDirectory(name, directory) {

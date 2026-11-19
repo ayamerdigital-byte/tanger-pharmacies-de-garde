@@ -71,5 +71,29 @@
     "address": "7 avenue Youssef Ibn Tachfine, Tanger",
     "phone": "+212539940974",
     "source": "https://www.gardepharma.ma/pharmacie/1014"
+  },
+  {
+    "name": "Amalat Bni Makada",
+    "address": "Bir Aharchoun, Route Principale Gourziana, Tanger",
+    "phone": "+212539953664",
+    "source": "https://web.facebook.com/pharmacies.degarde.tanger/posts/pfbid0ExgbQLhrqdXmfJ4ckupXVUTMpaKggbNedR9u4TSia2LEbtvVCSrStme1A9xcjzSQl"
+  },
+  {
+    "name": "Anfa",
+    "address": "23 Avenue Haroun Errachid, Souani, Tanger",
+    "phone": "+212539331288",
+    "source": "https://web.facebook.com/pharmacies.degarde.tanger/posts/pfbid0ExgbQLhrqdXmfJ4ckupXVUTMpaKggbNedR9u4TSia2LEbtvVCSrStme1A9xcjzSQl"
+  },
+  {
+    "name": "Du Grand Stade",
+    "address": "Entre Marjane et le rond-point du Grand Stade, derrière l'usine ROCA, Tanger",
+    "phone": "+212539385750",
+    "source": "https://web.facebook.com/pharmacies.degarde.tanger/posts/pfbid0ExgbQLhrqdXmfJ4ckupXVUTMpaKggbNedR9u4TSia2LEbtvVCSrStme1A9xcjzSQl"
+  },
+  {
+    "name": "El Gharbi",
+    "address": "El Harrain, Complexe Abraj Maria, nouvelle route de la gare, Tanger",
+    "phone": "+212667287488",
+    "source": "https://web.facebook.com/pharmacies.degarde.tanger/posts/pfbid0ExgbQLhrqdXmfJ4ckupXVUTMpaKggbNedR9u4TSia2LEbtvVCSrStme1A9xcjzSQl"
   }
 ]

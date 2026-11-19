@@ -1,8 +1,80 @@
 {
   "source": "https://web.facebook.com/pharmacies.degarde.tanger",
-  "lastCheckedAt": "2026-11-18T20:31:05.072Z",
-  "lastChangedAt": "2026-11-18T20:31:05.072Z",
+  "lastCheckedAt": "2026-11-19T18:50:44.455Z",
+  "lastChangedAt": "2026-11-19T18:50:44.455Z",
   "posts": [
+    {
+      "id": "1795096464",
+      "date": "2026-11-19",
+      "shift": "combined",
+      "interval": null,
+      "intervals": [
+        {
+          "start": "13:00",
+          "end": "15:30"
+        },
+        {
+          "start": "19:30",
+          "end": "09:00"
+        }
+      ],
+      "expectedImageCount": 8,
+      "message": "⬅️صيدليات الحراسة ليوم #الخميس 19 نونبر 2026\n#توقيت_الحراسة\n↩#من_13h00_الى_15h30\n↩#من_19h30_الى_9h00_صباحا_ليوم_الجمعة\n⚠️ تأكدو من التاريخ و التوقيت المرفوق بالمنشور\n⚠️ من الأحسن الإتصال بالصيدلية قبل التوجه لها",
+      "createdAt": "2026-11-19T13:54:24.000Z",
+      "images": [
+        "/rosters/1795096464-1.jpg",
+        "/rosters/1795096464-2.jpg",
+        "/rosters/1795096464-3.jpg",
+        "/rosters/1795096464-4.jpg"
+      ],
+      "sourceUrl": "https://web.facebook.com/pharmacies.degarde.tanger/posts/pfbid0ExgbQLhrqdXmfJ4ckupXVUTMpaKggbNedR9u4TSia2LEbtvVCSrStme1A9xcjzSQl",
+      "pharmacies": [
+        {
+          "id": "1795096464-1-1",
+          "name": "Amalat Bni Makada",
+          "address": "Bir Aharchoun, Route Principale Gourziana, Tanger",
+          "phone": "+212539953664",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Pharmacie%20Amalat%20Bni%20Makada%2C%20Bir%20Aharchoun%2C%20Route%20Principale%20Gourziana%2C%20Tanger%2C%20Maroc",
+          "addressSource": "https://web.facebook.com/pharmacies.degarde.tanger/posts/pfbid0ExgbQLhrqdXmfJ4ckupXVUTMpaKggbNedR9u4TSia2LEbtvVCSrStme1A9xcjzSQl",
+          "status": "matched",
+          "sourceImage": "/rosters/1795096464-1.jpg",
+          "ocrConfidence": 64
+        },
+        {
+          "id": "1795096464-2-1",
+          "name": "Anfa",
+          "address": "23 Avenue Haroun Errachid, Souani, Tanger",
+          "phone": "+212539331288",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Pharmacie%20Anfa%2C%2023%20Avenue%20Haroun%20Errachid%2C%20Souani%2C%20Tanger%2C%20Maroc",
+          "addressSource": "https://web.facebook.com/pharmacies.degarde.tanger/posts/pfbid0ExgbQLhrqdXmfJ4ckupXVUTMpaKggbNedR9u4TSia2LEbtvVCSrStme1A9xcjzSQl",
+          "status": "matched",
+          "sourceImage": "/rosters/1795096464-2.jpg",
+          "ocrConfidence": 65
+        },
+        {
+          "id": "1795096464-3-1",
+          "name": "Du Grand Stade",
+          "address": "Entre Marjane et le rond-point du Grand Stade, derrière l'usine ROCA, Tanger",
+          "phone": "+212539385750",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Pharmacie%20Du%20Grand%20Stade%2C%20Entre%20Marjane%20et%20le%20rond-point%20du%20Grand%20Stade%2C%20derri%C3%A8re%20l'usine%20ROCA%2C%20Tanger%2C%20Maroc",
+          "addressSource": "https://web.facebook.com/pharmacies.degarde.tanger/posts/pfbid0ExgbQLhrqdXmfJ4ckupXVUTMpaKggbNedR9u4TSia2LEbtvVCSrStme1A9xcjzSQl",
+          "status": "matched",
+          "sourceImage": "/rosters/1795096464-3.jpg",
+          "ocrConfidence": 70
+        },
+        {
+          "id": "1795096464-4-1",
+          "name": "El Gharbi",
+          "address": "El Harrain, Complexe Abraj Maria, nouvelle route de la gare, Tanger",
+          "phone": "+212667287488",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Pharmacie%20El%20Gharbi%2C%20El%20Harrain%2C%20Complexe%20Abraj%20Maria%2C%20nouvelle%20route%20de%20la%20gare%2C%20Tanger%2C%20Maroc",
+          "addressSource": "https://web.facebook.com/pharmacies.degarde.tanger/posts/pfbid0ExgbQLhrqdXmfJ4ckupXVUTMpaKggbNedR9u4TSia2LEbtvVCSrStme1A9xcjzSQl",
+          "status": "matched",
+          "sourceImage": "/rosters/1795096464-4.jpg",
+          "ocrConfidence": 69
+        }
+      ]
+    },
     {
       "id": "1794996014",
       "date": "2026-11-18",
@@ -11,6 +83,8 @@
         "start": "19:30",
         "end": "09:00"
       },
+      "intervals": [],
+      "expectedImageCount": 8,
       "message": "صيدليات الحراسة #الليلية #لذكرى_عيد_الإستقلال يوم #الأربعاء 18 نونبر 2026\n⬇️ #توقيت_الحراسة_الليلي\n↩️ #من_19h30_الى_9h00_صباحا_ليوم_الخميس\n⚠️ تأكدو من التاريخ و التوقيت المرفوق بالمنشور\n⚠️ من الأحسن الإتصال بالصيدلية قبل التوجه لها",
       "createdAt": "2026-11-18T10:00:14.000Z",
       "images": [
@@ -74,6 +148,8 @@
         "start": "09:00",
         "end": "19:30"
       },
+      "intervals": [],
+      "expectedImageCount": 6,
       "message": "صيدليات الحراسة #النهارية #لذكرى_عيد_الإستقلال يوم #الأربعاء 18 نونبر 2026\n⬇️ #توقيت_الحراسة_النهاري\n↩ #من_9h00_الى_19h30\n⚠️ تأكدو من التاريخ و التوقيت المرفوق بالمنشور\n⚠️ من الأحسن الإتصال بالصيدلية قبل التوجه لها",
       "createdAt": "2026-11-18T08:00:52.000Z",
       "images": [
@@ -176,8 +252,19 @@
     {
       "id": "1794938891",
       "date": "2026-11-17",
-      "shift": "other",
+      "shift": "combined",
       "interval": null,
+      "intervals": [
+        {
+          "start": "13:00",
+          "end": "15:30"
+        },
+        {
+          "start": "19:30",
+          "end": "09:00"
+        }
+      ],
+      "expectedImageCount": 8,
       "message": "⬅️صيدليات الحراسة ليوم #الثلاثاء 17 نونبر 2026\n#توقيت_الحراسة\n↩#من13h00_الى_15h30\n↩#من_19h30_الى_9h00_صباحا_ليوم_الأربعاء\n⚠️ تأكدو من التاريخ و التوقيت المرفوق بالمنشور\n⚠️ من الأحسن الإتصال بالصيدلية قبل التوجه لها",
       "createdAt": "2026-11-17T18:08:11.000Z",
       "images": [
@@ -185,66 +272,6 @@
         "/rosters/1794938891-2.jpg",
         "/rosters/1794938891-3.jpg",
         "/rosters/1794938891-4.jpg"
-      ],
-      "pharmacies": [
-        {
-          "id": "1794938891-1-1",
-          "name": "AL BARAKA",
-          "address": null,
-          "phone": null,
-          "mapUrl": null,
-          "addressSource": null,
-          "status": "pending",
-          "sourceImage": "/rosters/1794938891-1.jpg",
-          "ocrConfidence": 74
-        },
-        {
-          "id": "1794938891-2-1",
-          "name": "AL MASJID",
-          "address": null,
-          "phone": null,
-          "mapUrl": null,
-          "addressSource": null,
-          "status": "pending",
-          "sourceImage": "/rosters/1794938891-2.jpg",
-          "ocrConfidence": 70
-        },
-        {
-          "id": "1794938891-3-1",
-          "name": "BNI TOUZINE",
-          "address": null,
-          "phone": null,
-          "mapUrl": null,
-          "addressSource": null,
-          "status": "pending",
-          "sourceImage": "/rosters/1794938891-3.jpg",
-          "ocrConfidence": 69
-        },
-        {
-          "id": "1794938891-4-1",
-          "name": "RIF",
-          "address": null,
-          "phone": null,
-          "mapUrl": null,
-          "addressSource": null,
-          "status": "pending",
-          "sourceImage": "/rosters/1794938891-4.jpg",
-          "ocrConfidence": 67
-        }
-      ]
-    },
-    {
-      "id": "1794829244",
-      "date": "2026-11-16",
-      "shift": "other",
-      "interval": null,
-      "message": "⬅️صيدليات الحراسة ليوم #الإثنين 16 نونبر 2026\n#توقيت_الحراسة\n↩#من13h00_الى_15h30\n↩#من19h30_الى_9h00_صباحا_ليوم_الثلاثاء\n⚠️ تأكدو من التاريخ و التوقيت المرفوق بالمنشور\n⚠️ من الأحسن الإتصال بالصيدلية قبل التوجه لها",
-      "createdAt": "2026-11-16T11:40:44.000Z",
-      "images": [
-        "/rosters/1794829244-1.jpg",
-        "/rosters/1794829244-2.jpg",
-        "/rosters/1794829244-3.jpg",
-        "/rosters/1794829244-4.jpg"
       ]
     }
   ]

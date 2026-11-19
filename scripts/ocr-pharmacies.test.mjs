@@ -5,6 +5,7 @@ import { extractName, matchDirectory, mapsSearchUrl } from './ocr-pharmacies.mjs
 test('extracts pharmacy names from noisy OCR lines', () => {
   assert.equal(extractName('Cr Pharmacie BELKACEM\nTanger'), 'BELKACEM');
   assert.equal(extractName('Pharmacie 6 NOVEMBRE\nRoute de Rabat'), '6 NOVEMBRE');
+  assert.equal(extractName('fr Pharmacie\nAMALAT BNI MAKADA\nRoute Principale'), 'AMALAT BNI MAKADA');
 });
 
 test('only exact normalized directory names match', () => {

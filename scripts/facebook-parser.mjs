@@ -37,13 +37,15 @@ export function parsePost(post) {
   const dateMatch = message.match(/\b(\d{1,2})\s+([\p{L}]+)\s+(20\d{2})\b/u);
   const month = dateMatch ? months[dateMatch[2]] : undefined;
   const date = month ? `${dateMatch[3]}-${String(month).padStart(2, '0')}-${dateMatch[1].padStart(2, '0')}` : null;
-  const shift = /الليلية/u.test(message) ? 'night' : /النهارية/u.test(message) ? 'day' : 'other';
+  let shift = /الليلية/u.test(message) ? 'night' : /النهارية/u.test(message) ? 'day' : 'other';
   const times = [...message.matchAll(/(\d{1,2})h(\d{2})/g)].map(match => `${match[1].padStart(2, '0')}:${match[2]}`);
   const createdAt = Number.isFinite(post.createdTime) ? new Date(post.createdTime * 1000).toISOString() : null;
   const images = [...new Set([post.photoURL, ...(post.albumPhotoURLs || [])].filter(url => typeof url === 'string' && url.startsWith('https://')))];
   if (!createdAt || !date || images.length === 0) return null;
-  const interval = shift !== 'other' && times.length >= 2 ? { start: times[0], end: times[1] } : null;
-  return { id: String(post.createdTime), date, shift, interval, message, createdAt, images };
+  if (shift === 'other' && times.length >= 4) shift = 'combined';
+  const intervals = shift === 'combined' ? [{ start: times[0], end: times[1] }, { start: times[2], end: times[3] }] : [];
+  const interval = (shift === 'day' || shift === 'night') && times.length >= 2 ? { start: times[0], end: times[1] } : null;
+  return { id: String(post.createdTime), date, shift, interval, intervals, expectedImageCount: post.albumPhotoCount || images.length, message, createdAt, images };
 }
 
 export function parseTimeline(html) {
