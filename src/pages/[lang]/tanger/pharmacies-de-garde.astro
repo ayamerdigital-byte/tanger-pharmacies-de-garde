@@ -2,6 +2,7 @@
 import { readFeed, latestRelevant, localNow, isActive } from '../../../lib/feed.js';
 import '../../../styles/global.css';
 import '../../../styles/pharmacy-cards.css';
+import '../../../styles/source-notice.css';
 
 export function getStaticPaths() {
   return [{ params: { lang: 'fr' } }, { params: { lang: 'ar' } }];
@@ -36,6 +37,7 @@ const t = isArabic ? {
   image: 'صورة الإعلان الأصلية', about: 'كيف نعرض هذه اللوائح', aboutText: 'نقرأ أسماء الصيدليات من صور الصفحة بتقنية OCR، ونطابقها مع دليل عناوين راجعناه. رابط الخريطة يبحث بالاسم والعنوان، ولا يؤكد موقعاً دقيقاً. اتصل بالصيدلية قبل التنقل.',
   latestWarning: 'هذه اللائحة ليست مؤكدة للحراسة الجارية. تحقق من المصدر قبل التنقل.',
   staleWarning: 'لا توجد في هذا الموقع لائحة متاحة بتاريخ اليوم. آخر لائحة أدناه قديمة؛ تحقق من صفحة المصدر قبل التنقل.',
+  noticeHeading: 'توضيح من صفحة المصدر', noticeSource: 'الصفحة الأصلية على فيسبوك',
   language: 'Français', archive: 'الصيدليات المدرجة', matched: 'عنوان بمصدر', pending: 'العنوان غير مؤكد', unknown: 'الاسم غير واضح', pendingAddress: 'راجع الصورة الأصلية للتأكد من العنوان.', map: 'ابحث في الخرائط', call: 'اتصل', addressSource: 'مصدر العنوان', mapNote: 'تحقق من النتيجة على الخريطة قبل الذهاب.',
 } : {
   subtitle: 'Le planning, directement depuis la source locale', current: 'Garde en cours', latest: 'Dernier planning publié',
@@ -45,10 +47,32 @@ const t = isArabic ? {
   image: 'Image de l’annonce originale', about: 'Comment ce site utilise les plannings', aboutText: 'Nous lisons les noms sur les images de la page avec l’OCR et les rapprochons d’un répertoire d’adresses sourcées. Le lien Maps lance une recherche par nom et adresse, sans garantir un emplacement exact. Appelez avant de partir.',
   latestWarning: 'Ce planning n’est pas confirmé pour la garde en cours. Vérifiez la source avant de partir.',
   staleWarning: 'Aucun planning daté d’aujourd’hui n’est disponible sur ce site. Le dernier planning ci-dessous est ancien ; vérifiez la page source avant de partir.',
+  noticeHeading: 'Clarification de la page source', noticeSource: 'Page Facebook d’origine',
   language: 'العربية', archive: 'Pharmacies annoncées', matched: 'Adresse sourcée', pending: 'Adresse à vérifier', unknown: 'Nom illisible', pendingAddress: 'Consultez l’image originale pour vérifier l’adresse.', map: 'Chercher sur Maps', call: 'Appeler', addressSource: 'Source de l’adresse', mapNote: 'Vérifiez le résultat sur la carte avant de partir.',
 };
 const shiftName = (shift) => t[shift] || t.other;
 const formatPostDate = (date) => new Intl.DateTimeFormat(locale, { timeZone: 'UTC', weekday: 'long', day: 'numeric', month: 'long' }).format(new Date(`${date}T12:00:00Z`));
+const notices = {
+  ar: {
+    lang: 'ar', dir: 'rtl', title: '🚨 🛑 توضيح مهم جدا 🛑 🚨',
+    paragraphs: [
+      'تم تاسيس هاته الصفحة ليسهل على السكان القاطنين بمدينة طنجة معرفة صيدليات الحراسة المناوبة الأقرب اليهم توفيرا للوقت و الجهد، خصوصا في الحالات الطارئة.',
+      'و للاشارة فالصفحة غير تابعة لنقابة الصيادلة و بعيدة كل البعد عن مجال الطب و الصيدلة.',
+      'وتبقى الصفحة عبارة عن عمل تطوعي، نرجو به رضا الله ودعاءكم.',
+      'لا تبخلو علينا بمشاركة الصفحة و منشوراتها لفائدة مرضانا، فالدال على الخير كفاعله.',
+    ],
+  },
+  fr: {
+    lang: 'fr', dir: 'ltr', title: '🚨 🛑 Importante Clarification 🛑 🚨',
+    paragraphs: [
+      "Cette page a été créée pour permettre aux résidents de Tanger de trouver facilement les pharmacies de garde les plus proches, afin de gagner le temps et l'énergie, spécialement dans les cas d'urgence.",
+      "La page non affilié au syndicat des pharmaciens et n'ont rien à voir avec le domaine de la médecine et de la pharmacie.",
+      'La page reste un travail volontaire, nous espérons que la satisfaction du Dieu et vos prière.',
+      "N'hésitez pas à partager la page et ses publications au profit de nos patients.",
+    ],
+  },
+};
+const noticeOrder = isArabic ? [notices.ar, notices.fr] : [notices.fr, notices.ar];
 ---
 <!doctype html>
 <html lang={lang} dir={isArabic ? 'rtl' : 'ltr'}>
@@ -106,6 +130,16 @@ const formatPostDate = (date) => new Intl.DateTimeFormat(locale, { timeZone: 'UT
             </article>)}
           </div>
         </>}
+      </section>
+      <section class="source-notice" aria-labelledby="notice-title">
+        <h2 id="notice-title">{t.noticeHeading}</h2>
+        <div class="notice-languages">
+          {noticeOrder.map(notice => <div class="notice-language" lang={notice.lang} dir={notice.dir}>
+            <h3>{notice.title}</h3>
+            <blockquote cite={feed.source}>{notice.paragraphs.map(paragraph => <p>{paragraph}</p>)}</blockquote>
+          </div>)}
+        </div>
+        <a class="notice-source" href={feed.source} target="_blank" rel="noopener noreferrer">{t.noticeSource} ↗</a>
       </section>
       <section class="about" aria-labelledby="about-title"><h2 id="about-title">{t.about}</h2><p>{t.aboutText}</p><a href={feed.source} target="_blank" rel="noopener noreferrer">{t.source}</a></section>
     </main>
