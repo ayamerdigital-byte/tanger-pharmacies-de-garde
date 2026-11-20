@@ -40,12 +40,14 @@ export function parsePost(post) {
   let shift = /الليلية/u.test(message) ? 'night' : /النهارية/u.test(message) ? 'day' : 'other';
   const times = [...message.matchAll(/(\d{1,2})h(\d{2})/g)].map(match => `${match[1].padStart(2, '0')}:${match[2]}`);
   const createdAt = Number.isFinite(post.createdTime) ? new Date(post.createdTime * 1000).toISOString() : null;
+  const publishedDate = createdAt ? new Intl.DateTimeFormat('en-GB', { timeZone: 'Africa/Casablanca', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date(createdAt)).split('/').reverse().join('-') : null;
+  const dateMismatch = date && publishedDate ? Math.abs(Date.parse(`${date}T12:00:00Z`) - Date.parse(`${publishedDate}T12:00:00Z`)) > 86_400_000 : false;
   const images = [...new Set([post.photoURL, ...(post.albumPhotoURLs || [])].filter(url => typeof url === 'string' && url.startsWith('https://')))];
   if (!createdAt || !date || images.length === 0) return null;
   if (shift === 'other' && times.length >= 4) shift = 'combined';
   const intervals = shift === 'combined' ? [{ start: times[0], end: times[1] }, { start: times[2], end: times[3] }] : [];
   const interval = (shift === 'day' || shift === 'night') && times.length >= 2 ? { start: times[0], end: times[1] } : null;
-  return { id: String(post.createdTime), date, shift, interval, intervals, expectedImageCount: post.albumPhotoCount || images.length, message, createdAt, images };
+  return { id: String(post.createdTime), date, publishedDate, dateMismatch, shift, interval, intervals, expectedImageCount: post.albumPhotoCount || images.length, message, createdAt, images };
 }
 
 export function parseTimeline(html) {

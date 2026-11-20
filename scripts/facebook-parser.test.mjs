@@ -22,3 +22,11 @@ test('keeps both published shifts and the full album count', () => {
   assert.deepEqual(post.intervals, [{ start: '13:00', end: '15:30' }, { start: '19:30', end: '09:00' }]);
   assert.equal(post.expectedImageCount, 8);
 });
+
+test('flags a roster whose caption date is a week older than its publication', () => {
+  const html = `"timelinePosts":[{"message":"صيدليات الحراسة ليوم #الجمعة 13 نونبر 2026 #من_12h30_الى_15h30 #من_19h30_الى_9h00","createdTime":1795178510,"photoURL":"https://example.com/a.jpg"}]`;
+  const [post] = parseTimeline(html);
+  assert.equal(post.date, '2026-11-13');
+  assert.equal(post.publishedDate, '2026-11-20');
+  assert.equal(post.dateMismatch, true);
+});

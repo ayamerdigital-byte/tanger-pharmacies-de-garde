@@ -1,11 +1,87 @@
 {
   "source": "https://web.facebook.com/pharmacies.degarde.tanger",
-  "lastCheckedAt": "2026-11-19T18:50:44.455Z",
-  "lastChangedAt": "2026-11-19T18:50:44.455Z",
+  "lastCheckedAt": "2026-11-20T21:56:14.080Z",
+  "lastChangedAt": "2026-11-20T21:56:14.080Z",
   "posts": [
+    {
+      "id": "1795178510",
+      "date": "2026-11-13",
+      "publishedDate": "2026-11-20",
+      "dateMismatch": true,
+      "shift": "combined",
+      "interval": null,
+      "intervals": [
+        {
+          "start": "12:30",
+          "end": "15:30"
+        },
+        {
+          "start": "19:30",
+          "end": "09:00"
+        }
+      ],
+      "expectedImageCount": 8,
+      "message": "⬅️صيدليات الحراسة ليوم #الجمعة 13 نونبر 2026\n#توقيت_الحراسة\n↩#من_12h30_الى_15h30\n↩#من_19h30_الى_9h00_صباحا_ليوم_السبت\n⚠️ تأكدو من التاريخ و التوقيت المرفوق بالمنشور\n⚠️ من الأحسن الإتصال بالصيدلية قبل التوجه لها",
+      "createdAt": "2026-11-20T12:41:50.000Z",
+      "images": [
+        "/rosters/1795178510-1.jpg",
+        "/rosters/1795178510-2.jpg",
+        "/rosters/1795178510-3.jpg",
+        "/rosters/1795178510-4.jpg"
+      ],
+      "sourceUrl": "https://web.facebook.com/pharmacies.degarde.tanger/posts/pfbid02x9saRMRR2WnDV9uVdRKYkeTWzepEJTfBjkMm4zTz4NwEJyxYZiheRAU5gh4GdzzZl",
+      "pharmacies": [
+        {
+          "id": "1795178510-1-1",
+          "name": "Al Hambra",
+          "address": "Avenue Aicha Mousafir, Houmat Haddad, Tanger",
+          "phone": "+212539954168",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Pharmacie%20Al%20Hambra%2C%20Avenue%20Aicha%20Mousafir%2C%20Houmat%20Haddad%2C%20Tanger%2C%20Maroc",
+          "addressSource": "https://web.facebook.com/pharmacies.degarde.tanger/posts/pfbid02x9saRMRR2WnDV9uVdRKYkeTWzepEJTfBjkMm4zTz4NwEJyxYZiheRAU5gh4GdzzZl",
+          "status": "matched",
+          "sourceImage": "/rosters/1795178510-1.jpg",
+          "ocrConfidence": 72
+        },
+        {
+          "id": "1795178510-2-1",
+          "name": "Bahrayen",
+          "address": "El Mers, Ancien Achend 5ème TR, lot n° 3142, Tanger",
+          "phone": "+212539388290",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Pharmacie%20Bahrayen%2C%20El%20Mers%2C%20Ancien%20Achend%205%C3%A8me%20TR%2C%20lot%20n%C2%B0%203142%2C%20Tanger%2C%20Maroc",
+          "addressSource": "https://web.facebook.com/pharmacies.degarde.tanger/posts/pfbid02x9saRMRR2WnDV9uVdRKYkeTWzepEJTfBjkMm4zTz4NwEJyxYZiheRAU5gh4GdzzZl",
+          "status": "matched",
+          "sourceImage": "/rosters/1795178510-2.jpg",
+          "ocrConfidence": 69
+        },
+        {
+          "id": "1795178510-3-1",
+          "name": "Cité des Sports",
+          "address": "Route Aswak Assalam, après Clinique AKDITAL, en face de la station Total, Tanger",
+          "phone": "+212808695811",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Pharmacie%20Cit%C3%A9%20des%20Sports%2C%20Route%20Aswak%20Assalam%2C%20apr%C3%A8s%20Clinique%20AKDITAL%2C%20en%20face%20de%20la%20station%20Total%2C%20Tanger%2C%20Maroc",
+          "addressSource": "https://web.facebook.com/pharmacies.degarde.tanger/posts/pfbid02x9saRMRR2WnDV9uVdRKYkeTWzepEJTfBjkMm4zTz4NwEJyxYZiheRAU5gh4GdzzZl",
+          "status": "matched",
+          "sourceImage": "/rosters/1795178510-3.jpg",
+          "ocrConfidence": 89
+        },
+        {
+          "id": "1795178510-4-1",
+          "name": "Granada",
+          "address": "18 Rue Teheran, angle Rue Lafayette, Tanger",
+          "phone": "+212539940772",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Pharmacie%20Granada%2C%2018%20Rue%20Teheran%2C%20angle%20Rue%20Lafayette%2C%20Tanger%2C%20Maroc",
+          "addressSource": "https://web.facebook.com/pharmacies.degarde.tanger/posts/pfbid02x9saRMRR2WnDV9uVdRKYkeTWzepEJTfBjkMm4zTz4NwEJyxYZiheRAU5gh4GdzzZl",
+          "status": "matched",
+          "sourceImage": "/rosters/1795178510-4.jpg",
+          "ocrConfidence": 71
+        }
+      ]
+    },
     {
       "id": "1795096464",
       "date": "2026-11-19",
+      "publishedDate": "2026-11-19",
+      "dateMismatch": false,
       "shift": "combined",
       "interval": null,
       "intervals": [
@@ -78,6 +154,8 @@
     {
       "id": "1794996014",
       "date": "2026-11-18",
+      "publishedDate": "2026-11-18",
+      "dateMismatch": false,
       "shift": "night",
       "interval": {
         "start": "19:30",
@@ -92,57 +170,13 @@
         "/rosters/1794996014-2.jpg",
         "/rosters/1794996014-3.jpg",
         "/rosters/1794996014-4.jpg"
-      ],
-      "pharmacies": [
-        {
-          "id": "1794996014-1-1",
-          "name": "Arimas",
-          "address": "Tanja Balia, quartier El Haskouri, lotissement Arimas, Tanger",
-          "phone": "+212708873019",
-          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Pharmacie%20Arimas%2C%20Tanja%20Balia%2C%20quartier%20El%20Haskouri%2C%20lotissement%20Arimas%2C%20Tanger%2C%20Maroc",
-          "addressSource": "https://www.telecontact.ma/pharmacie-de-garde-zone/tanger/tanger.html",
-          "status": "matched",
-          "sourceImage": "/rosters/1794996014-1.jpg",
-          "ocrConfidence": 72
-        },
-        {
-          "id": "1794996014-2-1",
-          "name": "Belkacem",
-          "address": "Jirari 2, avenue B Bis, Beni Makada, Tanger",
-          "phone": "+212539958371",
-          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Pharmacie%20Belkacem%2C%20Jirari%202%2C%20avenue%20B%20Bis%2C%20Beni%20Makada%2C%20Tanger%2C%20Maroc",
-          "addressSource": "https://www.telecontact.ma/pharmacie-de-garde-zone/tanger/tanger.html",
-          "status": "matched",
-          "sourceImage": "/rosters/1794996014-2.jpg",
-          "ocrConfidence": 66
-        },
-        {
-          "id": "1794996014-3-1",
-          "name": "Camelia",
-          "address": "8 avenue Moulay Rachid, Val Fleuri, Tanger",
-          "phone": "+212539373137",
-          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Pharmacie%20Camelia%2C%208%20avenue%20Moulay%20Rachid%2C%20Val%20Fleuri%2C%20Tanger%2C%20Maroc",
-          "addressSource": "https://www.marocmedecin.com/pharmacie/pharmacie-camelia-5019-14005019",
-          "status": "matched",
-          "sourceImage": "/rosters/1794996014-3.jpg",
-          "ocrConfidence": 76
-        },
-        {
-          "id": "1794996014-4-1",
-          "name": "Fleming",
-          "address": "Mesnana, complexe Al Worod, devant le grand stade, Tanger",
-          "phone": "+212539380892",
-          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Pharmacie%20Fleming%2C%20Mesnana%2C%20complexe%20Al%20Worod%2C%20devant%20le%20grand%20stade%2C%20Tanger%2C%20Maroc",
-          "addressSource": "https://pharmacy.ma/pharmacie/pharmacie-fleming-tanger",
-          "status": "matched",
-          "sourceImage": "/rosters/1794996014-4.jpg",
-          "ocrConfidence": 74
-        }
       ]
     },
     {
       "id": "1794988852",
       "date": "2026-11-18",
+      "publishedDate": "2026-11-18",
+      "dateMismatch": false,
       "shift": "day",
       "interval": {
         "start": "09:00",
@@ -157,121 +191,6 @@
         "/rosters/1794988852-2.jpg",
         "/rosters/1794988852-3.jpg",
         "/rosters/1794988852-4.jpg"
-      ],
-      "pharmacies": [
-        {
-          "id": "1794988852-1-1",
-          "name": "Akalai",
-          "address": "Route Tanja Balia, quartier Oued Sania, lotissement Sania, Tanger",
-          "phone": null,
-          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Pharmacie%20Akalai%2C%20Route%20Tanja%20Balia%2C%20quartier%20Oued%20Sania%2C%20lotissement%20Sania%2C%20Tanger%2C%20Maroc",
-          "addressSource": "https://pharmacy.ma/pharmacie/pharmacie-akalai-tanger",
-          "status": "matched",
-          "sourceImage": "/rosters/1794988852-1.jpg",
-          "ocrConfidence": 55
-        },
-        {
-          "id": "1794988852-1-2",
-          "name": "6 Novembre",
-          "address": "30 résidence Marjane, route de Rabat, Tanger",
-          "phone": "+212539312007",
-          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Pharmacie%206%20Novembre%2C%2030%20r%C3%A9sidence%20Marjane%2C%20route%20de%20Rabat%2C%20Tanger%2C%20Maroc",
-          "addressSource": "https://medicalis.ma/fiche/PHARMACIE-6-NOVEMBRE/30622",
-          "status": "matched",
-          "sourceImage": "/rosters/1794988852-1.jpg",
-          "ocrConfidence": 52
-        },
-        {
-          "id": "1794988852-2-1",
-          "name": "Assafwa",
-          "address": "Nouvelle route Rahrah, Abdalass, Tanger",
-          "phone": "+212539312918",
-          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Pharmacie%20Assafwa%2C%20Nouvelle%20route%20Rahrah%2C%20Abdalass%2C%20Tanger%2C%20Maroc",
-          "addressSource": "https://pharmacy.ma/pharmacie/pharmacie-assafwa-tanger",
-          "status": "matched",
-          "sourceImage": "/rosters/1794988852-2.jpg",
-          "ocrConfidence": 46
-        },
-        {
-          "id": "1794988852-2-2",
-          "name": "Satfilage",
-          "address": "Avenue Moulay Rachid, rue face à la prison de Tanger",
-          "phone": "+212539315460",
-          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Pharmacie%20Satfilage%2C%20Avenue%20Moulay%20Rachid%2C%20rue%20face%20%C3%A0%20la%20prison%20de%20Tanger%2C%20Maroc",
-          "addressSource": "https://www.satfilage.com/contact/",
-          "status": "matched",
-          "sourceImage": "/rosters/1794988852-2.jpg",
-          "ocrConfidence": 42
-        },
-        {
-          "id": "1794988852-3-1",
-          "name": "Ben Ayad",
-          "address": "Mrah Tanja Balia, près du palais des fêtes Moutamid Ibn Abbad, Tanger",
-          "phone": "+212539342635",
-          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Pharmacie%20Ben%20Ayad%2C%20Mrah%20Tanja%20Balia%2C%20pr%C3%A8s%20du%20palais%20des%20f%C3%AAtes%20Moutamid%20Ibn%20Abbad%2C%20Tanger%2C%20Maroc",
-          "addressSource": "https://www.lejournaldetanger.com/wp-content/uploads/PDF22/LejournaldeTanger02Avril2022.pdf",
-          "status": "matched",
-          "sourceImage": "/rosters/1794988852-3.jpg",
-          "ocrConfidence": 36
-        },
-        {
-          "id": "1794988852-3-2",
-          "name": "Sania",
-          "address": "Boulevard Aicha Moussafir, Sania, Beni Makada, Tanger",
-          "phone": "+212539361330",
-          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Pharmacie%20Sania%2C%20Boulevard%20Aicha%20Moussafir%2C%20Sania%2C%20Beni%20Makada%2C%20Tanger%2C%20Maroc",
-          "addressSource": "https://www.telecontact.ma/annonceur/pharmacie-sania/3047220/tanger.php",
-          "status": "matched",
-          "sourceImage": "/rosters/1794988852-3.jpg",
-          "ocrConfidence": 58
-        },
-        {
-          "id": "1794988852-4-1",
-          "name": "De Tanger",
-          "address": "Route de Tétouan, complexe Amal 3, Tanger",
-          "phone": "+212539954808",
-          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Pharmacie%20De%20Tanger%2C%20Route%20de%20T%C3%A9touan%2C%20complexe%20Amal%203%2C%20Tanger%2C%20Maroc",
-          "addressSource": "https://sahha.ma/pharmacien/tanger/pharmacie-de-tanger-tanger",
-          "status": "matched",
-          "sourceImage": "/rosters/1794988852-4.jpg",
-          "ocrConfidence": 60
-        },
-        {
-          "id": "1794988852-4-2",
-          "name": "La Plage",
-          "address": "7 avenue Youssef Ibn Tachfine, Tanger",
-          "phone": "+212539940974",
-          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Pharmacie%20La%20Plage%2C%207%20avenue%20Youssef%20Ibn%20Tachfine%2C%20Tanger%2C%20Maroc",
-          "addressSource": "https://www.gardepharma.ma/pharmacie/1014",
-          "status": "matched",
-          "sourceImage": "/rosters/1794988852-4.jpg",
-          "ocrConfidence": 45
-        }
-      ]
-    },
-    {
-      "id": "1794938891",
-      "date": "2026-11-17",
-      "shift": "combined",
-      "interval": null,
-      "intervals": [
-        {
-          "start": "13:00",
-          "end": "15:30"
-        },
-        {
-          "start": "19:30",
-          "end": "09:00"
-        }
-      ],
-      "expectedImageCount": 8,
-      "message": "⬅️صيدليات الحراسة ليوم #الثلاثاء 17 نونبر 2026\n#توقيت_الحراسة\n↩#من13h00_الى_15h30\n↩#من_19h30_الى_9h00_صباحا_ليوم_الأربعاء\n⚠️ تأكدو من التاريخ و التوقيت المرفوق بالمنشور\n⚠️ من الأحسن الإتصال بالصيدلية قبل التوجه لها",
-      "createdAt": "2026-11-17T18:08:11.000Z",
-      "images": [
-        "/rosters/1794938891-1.jpg",
-        "/rosters/1794938891-2.jpg",
-        "/rosters/1794938891-3.jpg",
-        "/rosters/1794938891-4.jpg"
       ]
     }
   ]

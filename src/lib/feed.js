@@ -31,15 +31,23 @@ function nextDate(date) {
 }
 
 export function isActive(post, now = localNow()) {
+  if (post.dateMismatch) return false;
   const intervals = post.intervals?.length ? post.intervals : post.interval ? [post.interval] : [];
   return intervals.some(({ start, end }) => end > start
     ? post.date === now.date && now.time >= start && now.time < end
     : (post.date === now.date && now.time >= start) || (nextDate(post.date) === now.date && now.time < end));
 }
 
+export function latestPublished(posts) {
+  const newest = [...posts].sort((a, b) => (b.createdAt || b.date).localeCompare(a.createdAt || a.date))[0];
+  if (!newest) return [];
+  return newest.dateMismatch ? [newest] : posts.filter(post => post.date === newest.date && !post.dateMismatch);
+}
+
 export function latestRelevant(posts, now = localNow()) {
+  const latest = latestPublished(posts);
+  if (latest[0]?.dateMismatch) return { posts: latest, active: false };
   const active = posts.filter(post => isActive(post, now));
   if (active.length) return { posts: active, active: true };
-  const latestDate = posts.map(post => post.date).sort().at(-1);
-  return { posts: posts.filter(post => post.date === latestDate), active: false };
+  return { posts: latest, active: false };
 }

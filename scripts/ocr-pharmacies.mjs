@@ -35,8 +35,8 @@ async function recognize(worker, image) {
 }
 
 export async function enrichLatestPosts(posts, imageDir, directory) {
-  const recentDates = [...new Set(posts.map(post => post.date))].sort().slice(-2);
-  const latestPosts = posts.filter(post => recentDates.includes(post.date));
+  const recentDates = [...new Set(posts.map(post => post.publishedDate || post.date))].sort().slice(-2);
+  const latestPosts = posts.filter(post => recentDates.includes(post.publishedDate || post.date));
   if (!latestPosts.length) return posts;
   const worker = await createWorker('eng+fra');
   try {

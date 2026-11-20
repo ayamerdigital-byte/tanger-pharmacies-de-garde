@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { isActive, latestRelevant } from './feed.js';
+import { isActive, latestPublished, latestRelevant } from './feed.js';
 
 const night = { date: '2026-11-18', interval: { start: '19:30', end: '09:00' } };
 
@@ -21,4 +21,12 @@ test('a combined roster has an afternoon and an overnight shift', () => {
   assert.equal(isActive(combined, { date: '2026-11-19', time: '20:00' }), true);
   assert.equal(isActive(combined, { date: '2026-11-20', time: '08:00' }), true);
   assert.equal(isActive(combined, { date: '2026-11-20', time: '09:00' }), false);
+});
+
+test('new post with conflicting caption date is shown but never marked active', () => {
+  const newer = { date: '2026-11-13', publishedDate: '2026-11-20', dateMismatch: true, createdAt: '2026-11-20T12:41:50Z', intervals: [{ start: '19:30', end: '09:00' }] };
+  const older = { date: '2026-11-19', createdAt: '2026-11-19T13:54:24Z', intervals: [{ start: '19:30', end: '09:00' }] };
+  assert.deepEqual(latestPublished([older, newer]), [newer]);
+  assert.deepEqual(latestRelevant([older, newer], { date: '2026-11-20', time: '20:00' }), { posts: [newer], active: false });
+  assert.equal(isActive(newer, { date: '2026-11-20', time: '20:00' }), false);
 });
